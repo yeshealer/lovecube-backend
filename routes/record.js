@@ -5,7 +5,6 @@ const ObjectId = require("mongodb").ObjectId;
 
 recordRoutes.route("/saveData").post(function (req, response) {
     let db_connect = dbo.getDb();
-    let myquery = { _id: ObjectId('633c4b5335672e8d80b28bd9') }
     let myobj = {
         $set: {
             toFirstName: req.query.toFirstName,
@@ -24,7 +23,7 @@ recordRoutes.route("/saveData").post(function (req, response) {
             yourMail: req.query.yourMail,
         },
     }
-    db_connect.collection("collection").updateOne(myquery, myobj, function (err, res) {
+    db_connect.collection("collection").insertOne(myobj, function (err, res) {
         if (err) throw err;
         response.json(res);
     })
