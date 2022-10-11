@@ -27,4 +27,12 @@ recordRoutes.route("/saveData").post(function (req, response) {
     })
 })
 
+recordRoutes.route("/readData").get(function (req, response) {
+    let db_connect = dbo.getDb();
+    db_connect.collection("collection").find({ yourMail: req.query.yourMail }).toArray(function (err, res) {
+        if (err) throw err;
+        response.json(res);
+    })
+})
+
 module.exports = recordRoutes;
