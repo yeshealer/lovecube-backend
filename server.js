@@ -9,6 +9,7 @@ const cors = require('cors');
 
 const PORT = process.env.PORT;
 
+app.use(bodyParser.json({ limit: '50mb' }));
 app.use(function (req, res, next) {
     res.setHeader('X-Frame-Options', 'sameorigin');
     next();
