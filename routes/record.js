@@ -6,20 +6,20 @@ const ObjectId = require("mongodb").ObjectId;
 recordRoutes.route("/saveData").post(function (req, response) {
     let db_connect = dbo.getDb();
     let myobj = {
-        toFirstName: req.query.toFirstName,
-        toLastName: req.query.toLastName,
-        toNickName: req.query.toNickName,
-        describe: req.query.describe,
-        finalCardImage: req.query.finalCardImage,
-        fromFirstName: req.query.fromFirstName,
-        fromLastName: req.query.fromLastName,
-        fromNickName: req.query.fromNickName,
-        inscription: req.query.inscription,
-        moreMessage: req.query.moreMessage,
-        msgFinalCard: req.query.msgFinalCard,
-        occasion: req.query.occasion,
-        topCardImage: req.query.topCardImage,
-        yourMail: req.query.yourMail,
+        toFirstName: req.body.toFirstName,
+        toLastName: req.body.toLastName,
+        toNickName: req.body.toNickName,
+        describe: req.body.describe,
+        finalCardImage: req.body.finalCardImage,
+        fromFirstName: req.body.fromFirstName,
+        fromLastName: req.body.fromLastName,
+        fromNickName: req.body.fromNickName,
+        inscription: req.body.inscription,
+        moreMessage: req.body.moreMessage,
+        msgFinalCard: req.body.msgFinalCard,
+        occasion: req.body.occasion,
+        topCardImage: req.body.topCardImage,
+        yourMail: req.body.yourMail,
         currentTime: Date.now()
     }
     db_connect.collection("collection").insertOne(myobj, function (err, res) {
@@ -30,7 +30,7 @@ recordRoutes.route("/saveData").post(function (req, response) {
 
 recordRoutes.route("/readData").get(function (req, response) {
     let db_connect = dbo.getDb();
-    db_connect.collection("collection").find({ yourMail: req.query.yourMail }).toArray(function (err, res) {
+    db_connect.collection("collection").find({ yourMail: req.body.yourMail }).toArray(function (err, res) {
         if (err) throw err;
         response.json(res);
     })
