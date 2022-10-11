@@ -20,7 +20,7 @@ recordRoutes.route("/saveData").post(function (req, response) {
         occasion: req.query.occasion,
         topCardImage: req.query.topCardImage,
         yourMail: req.query.yourMail,
-        currentTime: req.query.currentTime
+        currentTime: Date.now()
     }
     db_connect.collection("collection").insertOne(myobj, function (err, res) {
         if (err) throw err;
