@@ -52,4 +52,12 @@ recordRoutes.route("/updateEmail").post(function (req, response) {
     })
 })
 
+recordRoutes.route("/updateFinalImage").post(function (req, response) {
+    let db_connect = dbo.getDb();
+    db_connect.collection("collection").updateOne({ _id: ObjectId(req.query.uniqueId) }, [{ $set: { finalCardImage: req.query.finalCardImage } }], function (err, res) {
+        if (err) throw err;
+        response.json(res);
+    })
+})
+
 module.exports = recordRoutes;
