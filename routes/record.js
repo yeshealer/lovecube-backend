@@ -2,9 +2,6 @@ const express = require("express")
 const recordRoutes = express.Router();
 const dbo = require("../db/conn");
 const ObjectId = require("mongodb").ObjectId;
-const bodyParser = require('body-parser');
-
-app.use(bodyParser.json({ limit: '50mb' }));
 
 recordRoutes.route("/saveData").post(function (req, response) {
     let db_connect = dbo.getDb();
