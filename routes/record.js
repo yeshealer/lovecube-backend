@@ -5,8 +5,6 @@ const ObjectId = require("mongodb").ObjectId;
 
 recordRoutes.route("/saveData").post(function (req, response) {
     let db_connect = dbo.getDb();
-    console.log(req)
-    console.log("body section =>", req.body)
     let myobj = {
         toFirstName: req.query.toFirstName,
         toLastName: req.query.toLastName,
@@ -20,7 +18,7 @@ recordRoutes.route("/saveData").post(function (req, response) {
         moreMessage: req.query.moreMessage,
         msgFinalCard: req.query.msgFinalCard,
         occasion: req.query.occasion,
-        topCardImage: req.query.topCardImage,
+        topCardImage: req.body.topCardImage,
         yourMail: req.query.yourMail,
         currentTime: Date.now()
     }
@@ -32,7 +30,7 @@ recordRoutes.route("/saveData").post(function (req, response) {
 
 recordRoutes.route("/readData").get(function (req, response) {
     let db_connect = dbo.getDb();
-    db_connect.collection("collection").find({ yourMail: req.query.yourMail }).toArray(function (err, res) {
+    db_connect.collection("collection").find({ yourMail: req.query.yourMail }).project({ finalCardImage: 0 }).toArray(function (err, res) {
         if (err) throw err;
         response.json(res);
     })

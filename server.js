@@ -28,9 +28,10 @@ app.use(session({
         sameSite: 'strict' //👈 new code
     }
 }));
-// app.use(bodyParser.urlencoded({
-//     extended: true
-// }));
+app.use(bodyParser.urlencoded({
+    extended: true,
+    limit: '50mb'
+}));
 
 app.use(cors());
 app.use(express.json());
