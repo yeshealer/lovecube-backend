@@ -28,9 +28,9 @@ app.use(session({
         sameSite: 'strict' //👈 new code
     }
 }));
-app.use(bodyParser.urlencoded({
-    extended: true
-}));
+// app.use(bodyParser.urlencoded({
+//     extended: true
+// }));
 
 app.use(cors());
 app.use(express.json());
@@ -38,8 +38,6 @@ app.use(require("./routes/record"))
 // app.use(require("./send"))
 
 const dbo = require("./db/conn")
-
-app.use(bodyParser.json());
 
 const buildPath = path.join(__dirname, '..', 'build');
 app.use(express.static(buildPath));

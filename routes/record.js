@@ -5,6 +5,8 @@ const ObjectId = require("mongodb").ObjectId;
 
 recordRoutes.route("/saveData").post(function (req, response) {
     let db_connect = dbo.getDb();
+    console.log(req)
+    console.log("body section =>", req.body)
     let myobj = {
         toFirstName: req.query.toFirstName,
         toLastName: req.query.toLastName,
