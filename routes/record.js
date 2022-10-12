@@ -36,4 +36,12 @@ recordRoutes.route("/readData").get(function (req, response) {
     })
 })
 
+recordRoutes.route("/getDataById").get(function (req, response) {
+    let db_connect = dbo.getDb();
+    db_connect.collection("collection").find({ _id: req.query._id }).toArray(function (err, res) {
+        if (err) throw err;
+        response.json(res);
+    })
+})
+
 module.exports = recordRoutes;
