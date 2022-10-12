@@ -10,7 +10,7 @@ recordRoutes.route("/saveData").post(function (req, response) {
         toLastName: req.query.toLastName,
         toNickName: req.query.toNickName,
         describe: req.query.describe,
-        finalCardImage: req.data.finalCardImage,
+        finalCardImage: req.query.finalCardImage,
         fromFirstName: req.query.fromFirstName,
         fromLastName: req.query.fromLastName,
         fromNickName: req.query.fromNickName,
