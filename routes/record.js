@@ -38,7 +38,7 @@ recordRoutes.route("/readData").get(function (req, response) {
 
 recordRoutes.route("/getDataById").get(function (req, response) {
     let db_connect = dbo.getDb();
-    db_connect.collection("collection").find({ _id: req.query.uniqueId }).toArray(function (err, res) {
+    db_connect.collection("collection").find({ _id: ObjectId(req.query.uniqueId) }).toArray(function (err, res) {
         if (err) throw err;
         response.json(res);
     })
